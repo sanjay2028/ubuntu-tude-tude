@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Form</title>
+</head>
+<body>
+    <h2>{{ data.form_name }}</h2>
+    <form action="/form-submission" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ data.values.name }}" /><br><br>
+
+        <label for="age">Your age (integer value only):</label>
+        <input type="text" id="age" name="age" value="{{ data.values.age }}" /><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+    <p>&nbsp;</p>
+    <div>
+        {% if data.errors|length != 0%}
+        <h3>Submission failed</h3>
+            <ul>
+            {% for item in data.errors %}
+                <li>{{ item }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+</body>
+</html>
