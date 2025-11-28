@@ -48,7 +48,8 @@ def form():
         2. Create a form on the frontend that, when submitted, inserts data into MongoDB Atlas. 
             Upon successful submission, the user should be redirected to another page displaying 
             the message "Data submitted successfully". 
-            If there's an error during submission, display the error on the same page without redirection.
+            If there's an error during submission, display the error on the same page without redirection.  
+    
     """
     form_errors = []
     values = { "name": "", "age": ""}
@@ -71,20 +72,18 @@ def form():
             form_errors.append("Invalid age value")
         
         if(len(form_errors) == 0):
-
             try:
                 members.insert_one({"name": name, "age": age})
                 return redirect(url_for('success'))
             except Exception as E:
-                print(E)
                 form_errors.append("Failed to add record to database")
-                
             
+    template_data  = { 
+        "form_name": "User Information Form", 
+        "errors": form_errors, 
+        "values": values
+    }
 
-
-    template_data  = { "form_name": "User Information Form", "errors": form_errors, "values": values}
-
-    print(template_data)
     return render_template("form.html", data=template_data)
 
 
