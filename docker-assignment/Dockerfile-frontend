@@ -1,0 +1,15 @@
+FROM node:25.2-alpine
+
+LABEL maintainer="Sanjay Kumar <sanjay2028@gmail.com>"
+
+WORKDIR /app
+
+COPY ./frontend .
+
+RUN npm install
+
+EXPOSE 8000
+
+CMD ["node", "index.js"]
+
+

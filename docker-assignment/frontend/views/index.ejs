@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h3>User Information</h3>
+        </div>
+        <div class="card-body">
+            <form action="/" method="POST">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required value="<%= formData.name %>" />
+                    <% if(submission_output?.validationErrors?.name){ %> 
+                        <div class="error"><%= submission_output.validationErrors.name %></div>
+                    <% } %>
+                </div>
+                <div class="mb-3">
+                    <label for="age" class="form-label">Age:</label>
+                    <input type="number" class="form-control" id="age" name="age" placeholder="Enter your age" required value="<%= formData.age %>" />
+                    <% if(submission_output?.validationErrors?.age){ %> 
+                        <div class="error"><%= submission_output.validationErrors.age %></div>
+                    <% } %>
+                    <br />
+                    <button type="submit" class="btn btn-success w-100">Submit</button>
+                </div>
+            </form>
+
+            
+            <% if (submission) { %>
+                <div class="mb-3">
+                <% if (submission_output.success) {%>
+                    <p>Yay!! Submission Was Successful!!!</p>
+                <% } else { %>
+                    <p>Oops! Submission Failed</p>
+                <% } %>
+                </div>
+            <% } %>
+            
+
+        </div>        
+    </div>
+</div>
+</body>
+</html>

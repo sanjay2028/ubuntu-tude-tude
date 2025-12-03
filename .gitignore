@@ -2,3 +2,5 @@ venv
 *cache
 ansible
 *.env
+docker-compose.prod
+node_modules

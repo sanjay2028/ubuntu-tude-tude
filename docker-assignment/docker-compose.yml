@@ -1,0 +1,38 @@
+services:
+  backend:
+    image: sanjay2028/td-python-backend
+    hostname: td-python-backend
+    ports:
+      - "5000:5000"
+    networks:
+      - selfTraining
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/heartbeat"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+    environment:
+      ## Real environment values not providd here 
+      ## Environemnt values to be updated as per your choice ##
+      MONGODBURL: DBURL_STRING  ## Update your MongoDB URL
+      DB_NAME: DB_NAME          ## Update Your Mongo DB URL
+      MEMBER_COLLECTION: DB_COLLECTION  ## Update your collection name for members
+
+
+  frontend:
+    image: sanjay2028/td-node-frontend
+    ports:
+     - "8000:8000"
+    depends_on:
+      - backend
+    environment:
+      SERVER_URL: http://backend:5000
+      PORT: 8000
+    networks:
+      - selfTraining
+
+networks:
+  selfTraining:
+    driver: bridge
+
