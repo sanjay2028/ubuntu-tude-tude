@@ -22,7 +22,12 @@ members = db[collection]
 
 @app.route("/heartbeat", methods=["GET"])
 def healthCheck():
-    return make_response(jsonify({ "status": "OK" }), 200)
+    try:
+        client.admin.command("ping")
+        return make_response(jsonify({"status": "OK"}), 200)
+    except Exception as e:
+        return make_response(jsonify({"status": "ERROR", "message": str(e)}), 500)
+
 
 
 @app.route("/add", methods=["POST"])
