@@ -1,2 +1,0 @@
-This is a lipsum text.
-Additional text added to the file.
