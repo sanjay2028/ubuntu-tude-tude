@@ -1,4 +1,5 @@
 import os
+import certifi
 from flask import Flask, request, jsonify,make_response
 from pymongo import MongoClient
 from dotenv import load_dotenv
@@ -10,7 +11,11 @@ MONGODB_URL = os.getenv("MONGODBURL")
 DB_NAME = os.getenv("DB_NAME")
 collection = os.getenv("MEMBER_COLLECTION")
 
-client: MongoClient = MongoClient(MONGODB_URL)
+client: MongoClient = MongoClient(  MONGODB_URL, 
+                                    tls=True,
+                                    tlsCAFile=certifi.where(),
+                                    serverSelectionTimeoutMS=30000
+                                )
 db = client[DB_NAME]
 members = db[collection]
 
@@ -42,10 +47,11 @@ def registration():
         return make_response(jsonify(form_errors), 422)
     else:
         try:
-            print("data here is")
             userData = { "name": name, "age":age }
-            members.insert_one(userData)
-            
+            data = members.insert_one(userData)
+
+            print("AtlasResponse >>>>>>>>>> ", data)
+
             return make_response(jsonify({ "name": name, "age":age }), 200)
         except Exception as e:
             print(e)
