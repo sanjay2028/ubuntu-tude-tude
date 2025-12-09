@@ -1,11 +1,13 @@
 import os
 import certifi
+from flask_cors import CORS
 from flask import Flask, request, jsonify,make_response
 from pymongo import MongoClient
 from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
 
 MONGODB_URL = os.getenv("MONGODBURL")
 DB_NAME = os.getenv("DB_NAME")
