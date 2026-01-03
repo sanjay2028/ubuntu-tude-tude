@@ -6,6 +6,10 @@ WORKDIR /app
 
 COPY ./backend .
 
+ENV MONGODBURL=mongodb+srv://training:aax1sc2dv3@ccp-training.4mapghn.mongodb.net/?appName=ccp-training
+ENV DB_NAME=training-flask-api
+ENV MEMBER_COLLECTION=members
+
 RUN pip install -r requirements.txt
 
 EXPOSE 5000

@@ -1,0 +1,14 @@
+AWSTemplateFormatVersio: 3
+Description: "Creation of PA Public Portal setup for PA Public Portal"
+
+Parameters:
+
+Resources:
+  PortalS3Bucket:
+    Type: AWS::s3::Bucket
+    Properties:
+      BucketName: dev-pa-public-portal
+      
+
+Outputs:
+

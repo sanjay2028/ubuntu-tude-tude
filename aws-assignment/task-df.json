@@ -1,0 +1,85 @@
+{
+    "family": "def-tsk-df-demo",
+    "containerDefinitions": [
+        {
+            "cpu": 0,
+            "environment": [
+                {
+                    "name": "MEMBER_COLLECTION",
+                    "value": "members"
+                },
+                {
+                    "name": "MONGODBURL",
+                    "value": "mongodb+srv://training:aax1sc2dv3@ccp-training.4mapghn.mongodb.net/?appName=ccp-training"
+                },
+                {
+                    "name": "DB_NAME",
+                    "value": "training-flask-api"
+                }
+            ],
+            "environmentFiles": [],
+            "essential": true,
+            "healthCheck": {},
+            "image": "922416659900.dkr.ecr.us-east-1.amazonaws.com/api-serverless@sha256:35776a29031791b21b6d9fac389946f15909d611c83f944c00212c1222e537b5",
+            "memory": 2048,
+            "mountPoints": [],
+            "name": "dev-backend",
+            "portMappings": [
+                {
+                    "appProtocol": "http",
+                    "containerPort": 5000,
+                    "hostPort": 5000,
+                    "name": "5000",
+                    "protocol": "tcp"
+                }
+            ],
+            "systemControls": [],
+            "ulimits": [],
+            "volumesFrom": []
+        },
+        {
+            "cpu": 0,
+            "dependsOn": [
+                {
+                    "condition": "HEALTHY",
+                    "containerName": "dev-backend"
+                }
+            ],
+            "environment": [
+                {
+                    "name": "SERVER_URL",
+                    "value": "http://0.0.0.0:5000"
+                }
+            ],
+            "environmentFiles": [],
+            "essential": false,
+            "image": "922416659900.dkr.ecr.us-east-1.amazonaws.com/api-serverless@sha256:34ed74b7fb030ec821ddff051c10a226abe8dfa92969911e3da7cb669035712c",
+            "mountPoints": [],
+            "name": "dev-fnd",
+            "portMappings": [
+                {
+                    "containerPort": 8000,
+                    "hostPort": 8000,
+                    "name": "8000",
+                    "protocol": "tcp"
+                }
+            ],
+            "systemControls": [],
+            "volumesFrom": []
+        }
+    ],
+    "executionRoleArn": "arn:aws:iam::922416659900:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "volumes": [],
+    "placementConstraints": [],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "2048",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "enableFaultInjection": false
+}
