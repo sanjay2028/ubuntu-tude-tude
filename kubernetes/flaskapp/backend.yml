@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: ccpro
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ccprobackend
+      stage: dev
+  template:
+    metadata:
+      labels:
+        app: ccprobackend
+        stage: dev
+    spec:
+      containers:
+        - name: backend-container
+          image: sanjay2028/td-python-backend:k8sv3
+          env:
+            - name: MONGODBURL
+              value: "mongodb://admin:admin@ccprodb-service.ccpro.svc.cluster.local:27017/?authSource=admin"
+            - name: DB_NAME
+              value: training-flask-api
+            - name: MEMBER_COLLECTION
+              value: members
+          ports:
+          - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ccpro-backend-svc
+  namespace: ccpro
+spec:
+  selector:
+    app: ccprobackend
+    stage: dev
+  ports:
+  - port: 80
+    targetPort: 5000

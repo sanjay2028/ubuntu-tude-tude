@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ccpro-ingress
+  labels:
+    app.kubernetes.io/name: ingress
+    stage: dev
+spec:
+  rules:
+  - host: ccpro.io
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: ccpro-frontend-svc
+            port: 
+              number: 80

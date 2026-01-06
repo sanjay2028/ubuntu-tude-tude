@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dbservice
+  namespace: ccpro
+spec:
+  selector:
+    matchLabels:
+      app: ccprodb
+      stage: dev
+  template:
+    metadata:
+      labels:
+        app: ccprodb
+        stage: dev
+    spec:
+      containers:
+      - name: ccprodb
+        image: mongodb/mongodb-community-server:latest
+        env:
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: admin
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            value: admin
+        ports:
+        - containerPort: 27017
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ccprodb-service
+  namespace: ccpro
+spec:
+  selector:
+    app: ccprodb
+    stage: dev
+  ports:
+  - port: 27017
+    targetPort: 27017

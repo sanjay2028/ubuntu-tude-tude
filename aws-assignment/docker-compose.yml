@@ -15,7 +15,7 @@ services:
     environment:
       ## Real environment values not providd here 
       ## Environemnt values to be updated as per your choice ##
-      MONGODBURL: DBURL_STRING  ## Update your MongoDB URL
+      MONGODBURL: mongodb+srv://training:aax1sc2dv3@mongodbservice 
       DB_NAME: DB_NAME          ## Update Your Mongo DB URL
       MEMBER_COLLECTION: DB_COLLECTION  ## Update your collection name for members
 
@@ -31,6 +31,15 @@ services:
       PORT: 8000
     networks:
       - selfTraining
+
+  mongodbservice:
+    image: mongodb/mongodb-community-server:latest
+    container_name: app-primary-db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAM: training
+      MONGO_INITDB_ROOT_PASSWORD: aax1sc2dv3 
 
 networks:
   selfTraining:

@@ -13,11 +13,9 @@ MONGODB_URL = os.getenv("MONGODBURL")
 DB_NAME = os.getenv("DB_NAME")
 collection = os.getenv("MEMBER_COLLECTION")
 
-client: MongoClient = MongoClient(  MONGODB_URL, 
-                                    tls=True,
-                                    tlsCAFile=certifi.where(),
-                                    serverSelectionTimeoutMS=30000
-                                )
+print("MONGODB_URL", MONGODB_URL)
+
+client: MongoClient = MongoClient(MONGODB_URL)
 db = client[DB_NAME]
 members = db[collection]
 
@@ -25,6 +23,7 @@ members = db[collection]
 @app.route("/heartbeat", methods=["GET"])
 def healthCheck():
     try:
+        print("hello")
         client.admin.command("ping")
         return make_response(jsonify({"status": "OK"}), 200)
     except Exception as e:
