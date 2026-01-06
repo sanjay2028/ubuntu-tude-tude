@@ -3,12 +3,14 @@ kind: Ingress
 metadata:
   name: ccpro-ingress
   namespace: ccpro
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
   labels:
     app.kubernetes.io/name: ingress
     stage: dev
 spec:
   rules:
-  - host: ccpro.io
+  - host: flaskapp.io
     http:
       paths:
       - pathType: Prefix

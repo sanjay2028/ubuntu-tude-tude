@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: ccpro-frontend
-          image: sanjay2028/tt-node-frontend:v3
+          image: sanjay2028/tt-node-frontend:v5
           imagePullPolicy: IfNotPresent 
           env:
             - name: SERVER_URL

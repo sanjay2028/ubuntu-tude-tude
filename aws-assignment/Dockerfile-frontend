@@ -2,6 +2,9 @@ FROM node:25.2-alpine
 
 LABEL maintainer="Sanjay Kumar <sanjay2028@gmail.com>"
 
+ENV HOST=0.0.0.0
+ENV DANGEROUSLY_DISABLE_HOST_CHECK=true
+
 WORKDIR /app
 
 COPY ./frontend .
