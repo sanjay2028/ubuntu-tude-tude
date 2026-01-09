@@ -4,3 +4,6 @@ ansible
 *.env
 docker-compose.prod
 node_modules
+*.tfvars
+.terraform
+.terraform.lock.hcl
