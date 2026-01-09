@@ -1,0 +1,17 @@
+aws_shared_config_file=""
+aws_shared_credentials_file=""
+aws_profile = ""
+cidr_block = ""
+app_name = ""
+aws_region = ""
+public_subnets = {
+    1 = { cidr_block = "", az = ""},
+    2 = { cidr_block = "", az = ""},
+}
+
+private_subnets = {
+    1 = { cidr_block = "", az = ""},
+    2 = { cidr_block = "", az = ""},
+}
+
+aws_key_pair_name = ""
