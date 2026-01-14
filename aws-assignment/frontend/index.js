@@ -5,7 +5,7 @@ const path = require('path');
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 9000;
 const SERVER_URL = process.env.SERVER_URL || "http://127.0.0.1:5000"
 
 console.log("APP PORT", PORT)
