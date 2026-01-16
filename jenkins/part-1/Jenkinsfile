@@ -22,9 +22,9 @@ pipeline{
             steps {
                 sh """
                     cp -r $WORKSPACE/aws-assignment/backend $PROJECT_HOME/$BACKEND_DIR
-                    pip3 install -r requirements.txt
+                    pip install -r $PROJECT_HOME/$BACKEND_DIR/requirements.txt
                     pkill -f app.py || true
-                    nohup python app.py > app.log 2>&1 &
+                    nohup python $PROJECT_HOME/$BACKEND_DIR/app.py > $PROJECT_HOME/$BACKEND_DIR/app.log 2>&1 &
                 """
             }
         }
