@@ -85,10 +85,10 @@ If all the commands are executed successfully, it will deploy the required infra
 
 Image creations for back end and front end
 - Create backend image usign Dockerfile-backend provided in aws-assignment directory
-    docker build . -t **<your-preferred-tag>** -f ./Dockerfile-backend
+    docker build . -t <your-preferred-tag> -f ./Dockerfile-backend
 
 - Create frontend image usign Dockerfile-frontend provided in aws-assignment directory
-    docker build . -t **<your-preferred-tag>** -f ./Dockerfile-frontend
+    docker build . -t <your-preferred-tag> -f ./Dockerfile-frontend
 
 Before pushing the images to repository, ensure you are logged in to ECR. You may use the following command to login:
 
