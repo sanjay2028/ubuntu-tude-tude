@@ -21,7 +21,7 @@ pipeline{
         stage("Backend"){
             steps {
                 sh """
-                    cp -r ./aws-assignment/backend $PROJECT_HOME/$BACKEND_DIR
+                    cp -r $WORKSPACE/aws-assignment/backend $PROJECT_HOME/$BACKEND_DIR
                 """
             }
         }
