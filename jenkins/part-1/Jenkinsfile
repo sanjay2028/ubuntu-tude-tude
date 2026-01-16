@@ -1,0 +1,10 @@
+pipeline {
+    stages {
+        stage("Hello World") {
+            echo "Hello World!"
+        }
+        stage("Completed") {
+            echo "completed"
+        }
+    }
+}
