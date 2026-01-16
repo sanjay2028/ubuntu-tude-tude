@@ -34,6 +34,24 @@ locals {
         cidr_blocks     = local.cidr_all
     } 
     security_groups = {
+        frontend_svr = {
+            name                =   "Front End SG"
+            description         =   "Security Group for Front end instance"
+            rules               =   {
+                ssh             =   local.ssh_rule            
+                outbound_all    =   local.egress_all_rule
+                listening_port  =   local.ftend_lp_rule            
+            }
+        },
+        backend_svr = {
+            name                =   "Backend SG"
+            description         =   "Security Group for Backend end instance"
+            rules               =   {
+                ssh             =   local.ssh_rule            
+                outbound_all    =   local.egress_all_rule
+                listening_port  =   local.bkend_lp_rule
+            }       
+        },
         common_server = {
             name                =   "Common Web Svr"
             description         =   "Security Group Common Instance for Backend / Frontend"

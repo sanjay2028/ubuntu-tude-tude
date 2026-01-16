@@ -21,8 +21,8 @@ locals {
         type            = "ingress"
         description     = "Frontend Listening for 9000"
         protocol        = local.protocol_tcp
-        from_port       = 9000
-        to_port         = 9000
+        from_port       = 5000
+        to_port         = 5000
         cidr_blocks     = local.cidr_all
     }
     ftend_lp_rule       = {
@@ -34,15 +34,23 @@ locals {
         cidr_blocks     = local.cidr_all
     } 
     security_groups = {
-        common_server = {
-            name                =   "Common Web Svr"
-            description         =   "Security Group Common Instance for Backend / Frontend"
+        frontend_svr = {
+            name                =   "Front End SG"
+            description         =   "Security Group for Front end instance"
             rules               =   {
-                ssh             =   local.ssh_rule
+                ssh             =   local.ssh_rule            
                 outbound_all    =   local.egress_all_rule
-                backend         =   local.bkend_lp_rule
-                frontend        =   local.ftend_lp_rule
+                listening_port  =   local.ftend_lp_rule            
             }
+        },
+        backend_svr = {
+            name                =   "Backend SG"
+            description         =   "Security Group for Backend end instance"
+            rules               =   {
+                ssh             =   local.ssh_rule            
+                outbound_all    =   local.egress_all_rule
+                listening_port  =   local.bkend_lp_rule
+            }       
         }
     }
 }
