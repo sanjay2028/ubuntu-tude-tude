@@ -1,33 +1,19 @@
-pipeline {
+pipeline{
     agent any
-    stages {
-        stage("Clone") {
-            steps {
-                echo "clone Repository"
-                sh "git clone https://github.com/sanjay2028/ubuntu-tude-tude.git"
-                echo "Checkout to Jenkins branch"
-                sh "git checkout -- jenkins"
-                sh "git pull"                
+    environment {
+        REPO_URL = "https://github.com/sanjay2028/ubuntu-tude-tude.git"
+        TARGET_BRANCH = "jenkins"
+    }
+
+    stages{
+        stage("Checkout"){
+            step {
+                git(
+                    url: env.REPO_URL
+                    branch: env.TARGET_BRANCH
+                )
+                sh "pwd"
             }
-            
         }
-        stage("Backend") {
-            steps {
-                echo "completed"
-            }            
-        }
-
-        stage("Frontend") {
-            steps {
-                echo "completed"
-            }            
-        }
-
-        stage("Notifications") {
-            steps {
-                echo "Email sent"
-            }            
-        }
-
     }
 }
