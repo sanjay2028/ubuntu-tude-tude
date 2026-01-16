@@ -1,10 +1,16 @@
 pipeline {
     stages {
         stage("Hello World") {
-            echo "Hello World!"
+            steps {
+                echo "Hello World!"
+            }
+            
         }
         stage("Completed") {
-            echo "completed"
+            steps {
+                echo "completed"
+            }
+            
         }
     }
 }
