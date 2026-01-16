@@ -1,4 +1,4 @@
-# Information for Docker Assignment Tute Dude
+# Information for Terraform Assignment Tute Dude
 This project contains the infrastructure for a microservice based architecture.
 
 Directory Terraform:
@@ -7,6 +7,8 @@ It contains three directories in the name of tasks
 
 ---------
 ## Task 1
+
+**Part 1: Deploy Both Flask and Express on a Single EC2 Instance**
 
 Task-1 directory is a terraform project that provisions the following
 1. VPC
@@ -31,6 +33,8 @@ You can now configure your front end and backend instances.
 ---------
 ## Task 2
 
+**Part 2: Deploy Flask and Express on Separate EC2 Instances**
+
 Task-2 directory is a terraform project that provisions the following
 1. VPC
 2. Subnets (Public & Private)
@@ -52,6 +56,8 @@ Execute (in sequence)
 
 ---------
 ## Task 3
+
+**Part 3: Deploy Flask and Express Using Docker and AWS Services**
 
 **Task-3 directory is a terraform project that provisions the following**
 
