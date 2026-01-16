@@ -1,85 +1,114 @@
 {
-    "family": "def-tsk-df-demo",
+    "taskDefinitionArn": "arn:aws:ecs:ap-south-1:922416659900:task-definition/tsk-df-bknd:3",
     "containerDefinitions": [
         {
+            "name": "backend",
+            "image": "922416659900.dkr.ecr.ap-south-1.amazonaws.com/backend-repo@sha256:28ccce3b2caca4e4e01c054bb345957510d61550f6c7c8f4ead2034e93abc9fe",
             "cpu": 0,
-            "environment": [
-                {
-                    "name": "MEMBER_COLLECTION",
-                    "value": "members"
-                },
-                {
-                    "name": "MONGODBURL",
-                    "value": "mongodb+srv://training:aax1sc2dv3@ccp-training.4mapghn.mongodb.net/?appName=ccp-training"
-                },
-                {
-                    "name": "DB_NAME",
-                    "value": "training-flask-api"
-                }
-            ],
-            "environmentFiles": [],
-            "essential": true,
-            "healthCheck": {},
-            "image": "922416659900.dkr.ecr.us-east-1.amazonaws.com/api-serverless@sha256:35776a29031791b21b6d9fac389946f15909d611c83f944c00212c1222e537b5",
-            "memory": 2048,
-            "mountPoints": [],
-            "name": "dev-backend",
             "portMappings": [
                 {
-                    "appProtocol": "http",
+                    "name": "5000",
                     "containerPort": 5000,
                     "hostPort": 5000,
-                    "name": "5000",
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/tsk-df-bknd",
+                    "awslogs-create-group": "true",
+                    "awslogs-region": "ap-south-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            },
+            "systemControls": []
+        },
+        {
+            "name": "frontend",
+            "image": "922416659900.dkr.ecr.ap-south-1.amazonaws.com/frontend-repo@sha256:57625d4f1fc4598efa897ac42c4115eebc86ae1e34305a8cb1a3a807e4cdf3f0",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "name": "9000",
+                    "containerPort": 9000,
+                    "hostPort": 9000,
                     "protocol": "tcp"
                 }
             ],
-            "systemControls": [],
-            "ulimits": [],
-            "volumesFrom": []
-        },
-        {
-            "cpu": 0,
-            "dependsOn": [
-                {
-                    "condition": "HEALTHY",
-                    "containerName": "dev-backend"
-                }
-            ],
+            "essential": false,
             "environment": [
                 {
                     "name": "SERVER_URL",
                     "value": "http://0.0.0.0:5000"
                 }
             ],
-            "environmentFiles": [],
-            "essential": false,
-            "image": "922416659900.dkr.ecr.us-east-1.amazonaws.com/api-serverless@sha256:34ed74b7fb030ec821ddff051c10a226abe8dfa92969911e3da7cb669035712c",
             "mountPoints": [],
-            "name": "dev-fnd",
-            "portMappings": [
-                {
-                    "containerPort": 8000,
-                    "hostPort": 8000,
-                    "name": "8000",
-                    "protocol": "tcp"
-                }
-            ],
-            "systemControls": [],
-            "volumesFrom": []
+            "volumesFrom": [],
+            "systemControls": []
         }
     ],
+    "family": "tsk-df-bknd",
+    "taskRoleArn": "arn:aws:iam::922416659900:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::922416659900:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
+    "revision": 3,
     "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+        }
+    ],
     "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "MANAGED_INSTANCES",
+        "FARGATE"
+    ],
     "requiresCompatibilities": [
         "FARGATE"
     ],
     "cpu": "1024",
-    "memory": "2048",
+    "memory": "3072",
     "runtimePlatform": {
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "enableFaultInjection": false
+    "registeredAt": "2026-01-16T11:24:14.663Z",
+    "registeredBy": "arn:aws:sts::922416659900:assumed-role/AWSReservedSSO_Admin_dd82d342b2b48293/skumar@itilitihealth.com",
+    "enableFaultInjection": false,
+    "tags": []
 }

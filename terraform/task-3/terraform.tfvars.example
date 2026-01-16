@@ -1,0 +1,17 @@
+aws_config = {
+    profile = ""
+    region = ""
+}
+
+app_name = ""
+env_name = ""
+
+vpc_cidr=""
+
+public_subnets = {
+    a = { cidr_block = "", az = ""}
+    b = { cidr_block = "", az = ""}
+}
+
+ecr_frontend = ""
+ecr_backend = ""

@@ -6,5 +6,6 @@ module "security_groups" {
         description =   each.value.description
         vpc_id      =   aws_vpc.main.id
     }
+       
     rules = each.value.rules
 }
