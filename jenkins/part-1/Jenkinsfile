@@ -21,7 +21,7 @@ pipeline{
         stage("Backend"){
             steps {
                 sh """
-                    cp -r $WORKSPACE/aws-assignment/backend $PROJECT_HOME/$BACKEND_DIR
+                    rsync -av $WORKSPACE/aws-assignment/backend $PROJECT_HOME/$BACKEND_DIR
                     cd $PROJECT_HOME/$BACKEND_DIR
                     pip install -r requirements.txt
                     pkill -f app.py || true
