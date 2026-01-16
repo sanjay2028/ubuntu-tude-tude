@@ -3,6 +3,9 @@ pipeline{
     environment {
         REPO_URL = "https://github.com/sanjay2028/ubuntu-tude-tude.git"
         TARGET_BRANCH = "jenkins"
+        PROJECT_HOME = "/home/ubuntu"
+        BACKEND_DIR =   "/home/ubuntu/backend"
+        FRONTEND_DIR = "home/ubuntu/frontend"
     }
 
     stages{
@@ -12,8 +15,9 @@ pipeline{
                     url: env.REPO_URL,
                     branch: env.TARGET_BRANCH
                 )
-                sh "pwd"
+                sh "sudo cp -r ./aws-assignment $PROJECT_HOME"
             }
         }
+
     }
 }
