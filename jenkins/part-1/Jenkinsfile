@@ -12,7 +12,6 @@ pipeline{
                     url: env.REPO_URL,
                     branch: env.TARGET_BRANCH
                 )
-                sh "pwd"
             }
         }
     }
