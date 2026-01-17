@@ -46,7 +46,7 @@ pipeline {
                         --cwd "$APP_HOME/$BACKEND_DIR" \
                         --output "$APP_HOME/$BACKEND_DIR/app.out.log" \
                         --error "$APP_HOME/$BACKEND_DIR/app.error.log" \
-                        --interpreter "$APP_HOME/$BACKEND_DIR/venv/bin/python" 
+                        --interpreter "$APP_HOME/$BACKEND_DIR/venv/bin/python3" 
                     
                     pm2 save
                     
