@@ -21,16 +21,16 @@ pipeline {
             steps {
                 sh """
                     echo "Kill the existing process"
-                    pkill -f $APP_HOME/$BACKEND/app.py
+                    pkill -f "$APP_HOME/$BACKEND_DIR/app.py" || true
 
                     echo "Copy the data from WORKDIR to Backend"
-                    cp -r $WORKDIR/ubuntu-tute-dude/aws-assignment/backend/* $APP_HOME/$BACKEND_DIR
+                    rsync -av "$WORKDIR/ubuntu-tute-dude/aws-assignment/backend/" "$APP_HOME/$BACKEND_DIR"
                     
                     echo "Install dependencies"
-                    $APP_HOME/$BACKEND/venv/bin/pip install -r requirements.txt
+                    "$APP_HOME/$BACKEND_DIR/venv/bin/pip" install -r requirements.txt
                     
                     echo "Start the process"
-                    nohup $APP_HOME/$BACKEND/venv/bin/python app.py > app.log 2>&1 &
+                    nohup "$APP_HOME/$BACKEND_DIR/venv/bin/python" app.py > "$APP_HOME/$BACKEND_DIR/app.log" 2>&1 &
                     
                     echo "Backend Started successfully"
                 """
