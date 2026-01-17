@@ -46,7 +46,9 @@ pipeline {
                         --output "$APP_HOME/$BACKEND_DIR/app.out.log" \
                         --error "$APP_HOME/$BACKEND_DIR/app.error.log" \
                         --interpreter "$APP_HOME/$BACKEND_DIR/venv/bin/python" 
-
+                    
+                    pm2 save
+                    
                     echo "Backend Started successfully"
                 """
             }
