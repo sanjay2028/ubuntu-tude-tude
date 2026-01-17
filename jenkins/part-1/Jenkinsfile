@@ -42,7 +42,7 @@ pipeline {
                         --name "$BACKEND_DIR" \
                         --output "./app.out.log" \
                         --error "./app.error.log" \
-                        --interpreter = "./venv/bin/python" 
+                        --interpreter "./venv/bin/python" 
 
                     echo "Backend Started successfully"
                 """
