@@ -43,6 +43,8 @@ pipeline {
 
                     pm2 start "$APP_HOME/$BACKEND_DIR/app.py" \
                         --name "$BACKEND_DIR" \
+                        --cwd "$APP_HOME/$BACKEND_DIR" \
+                        --env-file "$APP_HOME/$BACKEND_DIR/.env"
                         --output "$APP_HOME/$BACKEND_DIR/app.out.log" \
                         --error "$APP_HOME/$BACKEND_DIR/app.error.log" \
                         --interpreter "$APP_HOME/$BACKEND_DIR/venv/bin/python" 
