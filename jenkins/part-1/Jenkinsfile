@@ -21,8 +21,12 @@ pipeline {
                 sh """
                     echo "Switch to working dir"
                     cd /home/ec2-user/app
+
+                    pwd
                                         
                     python3 -m venv venv
+
+                    ls -la > list.txt
 
                     source venv/bin/activate
 
