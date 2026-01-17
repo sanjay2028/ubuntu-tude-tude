@@ -17,7 +17,7 @@ pipeline {
 
         }
 
-        stage("Checkout"){
+        stage("Backend"){
             steps {
                 sh """
                     echo "Kill the existing process"
