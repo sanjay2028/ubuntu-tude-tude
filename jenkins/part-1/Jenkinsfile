@@ -24,8 +24,6 @@ pipeline {
                                         
                     python3 -m venv venv
 
-                    ls -la > list.txt
-
                     . venv/bin/activate
 
                     deactivate
@@ -37,6 +35,7 @@ pipeline {
             steps {
                 sh """
                     echo "Copy data from workspace to backend"
+                    ls -la ${WORKSPACE} > content.txt
                     cp -r ${WORKSPACE}/aws-assignment/backend/* .
                     echo "Copy Successful"
 
