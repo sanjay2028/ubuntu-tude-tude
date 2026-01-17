@@ -21,28 +21,25 @@ pipeline {
                 echo "Backend Process starts"
                 sh """
                     echo "Kill the existing process"
-                    pkill -f "$APP_HOME/$BACKEND_DIR/app.py" || true
+                    pm2 stop $BACKEND_DIR || true
 
                     echo "Copy the data from WORKDIR to Backend"
                     rsync -av "$WORKSPACE/aws-assignment/backend/" "$APP_HOME/$BACKEND_DIR"
 
-                    echo "Install dependencies"
-                    "$APP_HOME/$BACKEND_DIR/venv/bin/pip" install -r "$APP_HOME/$BACKEND_DIR/requirements.txt"
-
-                    echo "Start the process"
-                    pwd        
-                    
+                    echo "Swich to Backend Directory"
                     cd "$APP_HOME/$BACKEND_DIR"
 
-                    pwd                     
+                    echo "Verify current directory"
+                    pwd 
 
-                    ls -ld /home/ubuntu/app/backend
+                    echo "Install dependencies"
+                    "./venv/bin/pip" install -r requirements.txt
 
-                    ls -l /home/ubuntu/app/backend/app.log
-
-                    whoami
-                    
-                    nohup /home/ubuntu/app/backend/venv/bin/python app.py > app.log 2>&1 &
+                    pm2 start app.py \
+                        --name "$BACKEND_DIR" \
+                        --output "./app.out.log" \
+                        --error "./app.error.log" \
+                        --interpreter = "./venv/bin/python" 
 
                     echo "Backend Started successfully"
                 """
