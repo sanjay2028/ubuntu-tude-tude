@@ -24,7 +24,7 @@ pipeline {
 
                     pwd
                                         
-                    python3 -m venv venv
+                    python -m venv venv
 
                     ls -la > list.txt
 
