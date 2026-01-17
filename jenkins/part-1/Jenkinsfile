@@ -23,7 +23,7 @@ pipeline {
                     cd "${APP_HOME}/${BACKEND_DIR}"                                        
                     python3 -m venv venv
 
-                    source venv/bin/activate
+                    . venv/bin/activate
                     deactivate
                     
                 """
