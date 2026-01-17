@@ -41,11 +41,11 @@ pipeline {
                     echo "Install dependencies"
                     "./venv/bin/pip" install -r requirements.txt
 
-                    pm2 start app.py \
+                    pm2 start "$APP_HOME/$BACKEND_DIR/app.py" \
                         --name "$BACKEND_DIR" \
-                        --output "./app.out.log" \
-                        --error "./app.error.log" \
-                        --interpreter "./venv/bin/python" 
+                        --output "$APP_HOME/$BACKEND_DIR/app.out.log" \
+                        --error "$APP_HOME/$BACKEND_DIR/app.error.log" \
+                        --interpreter "$APP_HOME/$BACKEND_DIR/venv/bin/python" 
 
                     echo "Backend Started successfully"
                 """
