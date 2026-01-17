@@ -37,7 +37,7 @@ pipeline {
             steps {
                 sh """
                     echo "Copy data from workspace to backend"
-                    copy ${WORKSPACE}/aws-assignment/backend/* .
+                    cp -r ${WORKSPACE}/aws-assignment/backend/* .
                     echo "Copy Successful"
 
                 """
