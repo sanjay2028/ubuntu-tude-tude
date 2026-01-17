@@ -21,8 +21,6 @@ pipeline {
                 sh """
                     echo "Switch to working dir"
                     cd /home/ec2-user/app/backend
-
-                    pwd
                                         
                     python3 -m venv venv
 
@@ -30,10 +28,20 @@ pipeline {
 
                     . venv/bin/activate
 
-                    echo "session started"
-
+                    deactivate
                 """
             }
+        }
+
+        stage("Backend") {
+            sh """
+                echo "Copy data from workspace to backend"
+                copy ${WORKSPACE}/aws-assignment/backend/* .
+                echo "Copy Successful"
+
+            """
+
+
         }
     }
 
