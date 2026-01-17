@@ -19,11 +19,6 @@ pipeline {
         stage("VENV Setup"){
             steps {
                 sh """
-                    pwd
-                    whoami
-                    ls -ld .
-                    touch test.log
-
                     echo "Switch to working dir"                    
                 """
             }
@@ -36,7 +31,7 @@ pipeline {
 
                     . venv/bin/activate
                     pip install -r requirements.txt > output.txt
-                    nohup python3 app.py > backendapp.log 2>&1 &
+                    /usr/bin/nohup /opt/app/backend/venv/bin/python app.py > backendapp.log 2>&1 &
                 """
             }
         }
