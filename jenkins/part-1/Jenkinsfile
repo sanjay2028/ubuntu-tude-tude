@@ -24,11 +24,11 @@ pipeline {
 
                     pwd
                                         
-                    python -m venv venv
+                    python3 -m venv venv
 
                     ls -la > list.txt
 
-                    source venv/bin/activate
+                    . venv/bin/activate
 
                     echo "session started"
 
