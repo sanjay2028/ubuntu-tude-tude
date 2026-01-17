@@ -31,7 +31,7 @@ pipeline {
 
                     . venv/bin/activate
                     pip install -r requirements.txt > output.txt
-                    nohup venv/bin/python3 app.py > backendapp.log 2>&1 &
+                    nohup python3 app.py > backendapp.log 2>&1 &
                 """
             }
         }
