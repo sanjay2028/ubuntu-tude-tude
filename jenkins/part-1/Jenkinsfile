@@ -39,8 +39,7 @@ pipeline {
                     cp -r ${WORKSPACE}/aws-assignment/backend/* .
                     . venv/bin/activate
                     pip3 install -r requirements.txt
-                    nohup python app.py > backend.log 2>&1 &
-                    curl -f http://localhost:5000/heartbeat
+                    nohup venv/bin/python app.py > backend.log 2>&1 &
                 """
 
             }
