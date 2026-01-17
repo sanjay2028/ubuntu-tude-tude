@@ -30,8 +30,11 @@ pipeline {
                     "$APP_HOME/$BACKEND_DIR/venv/bin/pip" install -r "$APP_HOME/$BACKEND_DIR/requirements.txt"
 
                     echo "Start the process"
+                    pwd        
+                    
                     cd "$APP_HOME/$BACKEND_DIR"
-                    nohup ./venv/bin/python" app.py > app.log 2>&1 &                    
+
+                    pwd                     
                     
                     echo "Backend Started successfully"
                 """
