@@ -22,9 +22,10 @@ pipeline {
                 echo "Backend Process starts"
                 sh """
                     echo "Kill the existing process"
+                    pkill -f "$APP_HOME/$BACKEND_DIR/app.py" || true
 
                     echo "Copy the data from WORKDIR to Backend"
-                    ls -la $WORKSPACE
+                    rsync -av "$WORKSPACE/ubuntu-tute-dude/aws-assignment/backend/" "$APP_HOME/$BACKEND_DIR"
 
                     echo "Install dependencies"
 
