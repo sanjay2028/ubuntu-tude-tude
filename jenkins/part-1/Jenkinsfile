@@ -39,7 +39,8 @@ pipeline {
                     cp -r ${WORKSPACE}/aws-assignment/backend/* .
                     . venv/bin/activate
                     pip3 install -r requirements.txt
-                    nohup venv/bin/python3 app.py > backend.log 2>&1 &
+                    touch backendapp.log
+                    nohup venv/bin/python3 app.py > backendapp.log 2>&1 &
                 """
 
             }
