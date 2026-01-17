@@ -27,8 +27,7 @@ pipeline {
         stage("Backend") {
             steps {
                 sh """                    
-                    cd "${APP_HOME}/${BACKEND_DIR}"
-       
+                    cd "${APP_HOME}/${BACKEND_DIR}"       
                     . venv/bin/activate
                     pip install -r requirements.txt > output.txt
                     /usr/bin/nohup /opt/app/backend/venv/bin/python app.py --no-reload > backendapp.log 2>&1 &
