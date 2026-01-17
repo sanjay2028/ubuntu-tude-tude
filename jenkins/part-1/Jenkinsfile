@@ -24,7 +24,7 @@ pipeline {
                     exec 2>&1 
 
                     echo "Kill the existing process"
-                    pm2 stop $BACKEND_DIR || true
+                    pm2 delete $BACKEND_DIR || true
 
                     echo "Copy the data from WORKDIR to Backend"
                     rsync -av "$WORKSPACE/aws-assignment/backend/" "$APP_HOME/$BACKEND_DIR"
