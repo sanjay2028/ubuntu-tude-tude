@@ -31,7 +31,7 @@ pipeline {
 
                     . venv/bin/activate
                     pip install -r requirements.txt > output.txt
-                    /usr/bin/nohup /opt/app/backend/venv/bin/python app.py > backendapp.log 2>&1 &
+                    /usr/bin/nohup /opt/app/backend/venv/bin/python app.py --no-reload > backendapp.log 2>&1 &
                 """
             }
         }
