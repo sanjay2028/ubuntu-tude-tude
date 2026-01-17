@@ -9,6 +9,16 @@ pipeline {
     stages{
         stage("Checkout"){
             steps {
+                git(
+                    url: "https://github.com/sanjay2028/ubuntu-tude-tude/",
+                    branch: "jenkins"
+                )
+            }
+
+        }
+
+        stage("Checkout"){
+            steps {
                 sh """
                     echo "Kill the existing process"
                     pkill -f $APP_HOME/$BACKEND/app.py
