@@ -20,7 +20,7 @@ pipeline {
             steps {
                 sh """
                     echo "Switch to working dir"
-                    cd /home/ec2-user/app
+                    cd /home/ec2-user/app/backend
 
                     pwd
                                         
