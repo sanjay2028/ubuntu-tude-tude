@@ -34,14 +34,13 @@ pipeline {
         stage("Backend") {
             steps {
                 sh """
-                    set -e
-                    exec > >(tee -a /var/log/error-logs.log | logger -t app-dep) 2>&1 
                     cd /home/ec2-user/app/backend
                     echo "Copy data from workspace to backend"
                     cp -r ${WORKSPACE}/aws-assignment/backend/* .
                     . venv/bin/activate
                     pip3 install -r requirements.txt
                     nohup python app.py > backend.log 2>&1 &
+                    curl -f http://localhost:5000/heartbeat
                 """
 
             }
