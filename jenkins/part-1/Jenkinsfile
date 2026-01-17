@@ -21,9 +21,7 @@ pipeline {
                 sh """
                     echo "Switch to working dir"
                     cd /home/ec2-user/app
-                    mkdir -p backend
-                    rm -rf backend/*
-                    
+                                        
                     python3 -m venv venv
 
                     source ./venv/bin/activate
