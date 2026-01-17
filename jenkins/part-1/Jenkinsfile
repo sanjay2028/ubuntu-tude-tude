@@ -32,7 +32,9 @@ pipeline {
 
         stage("Backend") {
             steps {
-                sh """
+                sh """                    
+                    pkill -f appy.y || true
+                    rm -f bckendapp.log
                     cd "${APP_HOME}/${BACKEND_DIR}"
                     echo "Copy data from workspace to backend"
                     cp -r ${WORKSPACE}/aws-assignment/backend/* .
