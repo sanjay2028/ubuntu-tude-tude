@@ -34,14 +34,15 @@ pipeline {
         }
 
         stage("Backend") {
-            sh """
-                echo "Copy data from workspace to backend"
-                copy ${WORKSPACE}/aws-assignment/backend/* .
-                echo "Copy Successful"
+            steps {
+                sh """
+                    echo "Copy data from workspace to backend"
+                    copy ${WORKSPACE}/aws-assignment/backend/* .
+                    echo "Copy Successful"
 
-            """
+                """
 
-
+            }
         }
     }
 
