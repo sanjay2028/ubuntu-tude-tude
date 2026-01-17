@@ -33,14 +33,10 @@ pipeline {
         stage("Backend") {
             steps {
                 sh """                    
-                    pkill -f appy.y || true
-                    rm -f bckendapp.log
                     cd "${APP_HOME}/${BACKEND_DIR}"
-                    echo "Copy data from workspace to backend"
-                    cp -r ${WORKSPACE}/aws-assignment/backend/* .
-                    pwd > pwd.txt
+
                     . venv/bin/activate
-                    pip install -r requirements.txt
+                    pip install -r requirements.txt > output.txt
                     nohup venv/bin/python3 app.py > backendapp.log 2>&1 &
                 """
             }
