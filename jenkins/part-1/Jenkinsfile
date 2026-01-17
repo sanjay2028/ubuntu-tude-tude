@@ -24,7 +24,7 @@ pipeline {
                     pkill -f "$APP_HOME/$BACKEND_DIR/app.py" || true
 
                     echo "Copy the data from WORKDIR to Backend"
-                    rsync -av "$WORKSPACE/$JOB_NAME/ubuntu-tute-dude/aws-assignment/backend/" "$APP_HOME/$BACKEND_DIR"
+                    rsync -av "$WORKSPACE/aws-assignment/backend/" "$APP_HOME/$BACKEND_DIR"
 
                     echo "Install dependencies"
 
