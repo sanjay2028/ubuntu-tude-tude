@@ -38,8 +38,9 @@ pipeline {
                     echo "Copy data from workspace to backend"
                     ls -la ${WORKSPACE} > content.txt
                     cp -r ${WORKSPACE}/aws-assignment/backend/* .
-                    echo "Copy Successful"
-
+                    . venv/bin/activate
+                    pip3 install -r requirements.txt
+                    nohup python3 app.py > app.log 2>&1 &
                 """
 
             }
