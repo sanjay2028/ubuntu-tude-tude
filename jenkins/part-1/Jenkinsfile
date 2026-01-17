@@ -23,6 +23,9 @@ pipeline {
                     set -e
                     exec 2>&1 
 
+                    export PM2_HOME=$APP_HOME/.pm2
+                    mkdir -p \$PM2_HOME
+
                     echo "Kill the existing process"
                     pm2 delete $BACKEND_DIR || true
 
