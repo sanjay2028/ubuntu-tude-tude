@@ -36,11 +36,10 @@ pipeline {
                 sh """
                     cd /home/ec2-user/app/backend
                     echo "Copy data from workspace to backend"
-                    ls -la ${WORKSPACE} > content.txt
                     cp -r ${WORKSPACE}/aws-assignment/backend/* .
                     . venv/bin/activate
                     pip3 install -r requirements.txt
-                    nohup python app.py > app.log 2>&1 &
+                    nohup python app.py > backend.log 2>&1 &
                 """
 
             }
