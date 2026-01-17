@@ -19,6 +19,11 @@ pipeline {
         stage("VENV Setup"){
             steps {
                 sh """
+                    pwd
+                    whoami
+                    ls -ld .
+                    touch test.log
+
                     echo "Switch to working dir"                    
                 """
             }
