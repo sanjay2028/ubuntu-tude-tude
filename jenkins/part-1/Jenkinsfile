@@ -36,6 +36,8 @@ pipeline {
 
                     pwd                     
                     
+                    nohup /home/ubuntu/app/backend/venv/bin/python app.py > app.log 2>&1 &
+
                     echo "Backend Started successfully"
                 """
             }
