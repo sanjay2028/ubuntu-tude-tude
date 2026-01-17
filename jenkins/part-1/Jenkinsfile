@@ -34,6 +34,7 @@ pipeline {
         stage("Backend") {
             steps {
                 sh """
+                    cd /home/ec2-user/app/backend
                     echo "Copy data from workspace to backend"
                     ls -la ${WORKSPACE} > content.txt
                     cp -r ${WORKSPACE}/aws-assignment/backend/* .
