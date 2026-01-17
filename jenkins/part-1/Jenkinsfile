@@ -20,6 +20,9 @@ pipeline {
             steps {
                 echo "Backend Process starts"
                 sh """
+                    set -euo pipefail
+                    exec 2>&1 
+                    
                     echo "Kill the existing process"
                     pm2 stop $BACKEND_DIR || true
 
