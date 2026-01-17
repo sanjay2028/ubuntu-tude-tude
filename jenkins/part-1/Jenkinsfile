@@ -1,34 +1,37 @@
-pipeline{
-    agent any
+pipeline {
+    agent any 
     environment {
-        REPO_URL = "https://github.com/sanjay2028/ubuntu-tude-tude.git"
-        TARGET_BRANCH = "jenkins"
-        PROJECT_HOME = "/home/ubuntu/app"
-        BACKEND_DIR =   "backend"
+        APP_HOME = "/home/ubuntu/app"
+        BACKEND_DIR = "backend"
         FRONTEND_DIR = "frontend"
     }
 
     stages{
         stage("Checkout"){
             steps {
-                git(
-                    url: env.REPO_URL,
-                    branch: env.TARGET_BRANCH
-                )
-            }
-        }
-
-        stage("Backend"){
-            steps {
                 sh """
-                    rsync -av $WORKSPACE/aws-assignment/backend $PROJECT_HOME/$BACKEND_DIR
-                    cd $PROJECT_HOME/$BACKEND_DIR
-                    $PROJECT_HOME/$BACKEND_DIR/venv/bin/pip install -r requirements.txt
-                    pkill -f app.py || true
-                    nohup python app.py > app.log 2>&1 &
+                    echo "Kill the existing process"
+                    pkill -f $APP_HOME/$BACKEND/app.py
+
+                    echo "Copy the data from WORKDIR to Backend"
+                    cp -r $WORKDIR/ubuntu-tute-dude/aws-assignment/backend/* $APP_HOME/$BACKEND_DIR
+                    
+                    echo "Install dependencies"
+                    $APP_HOME/$BACKEND/venv/bin/pip install -r requirements.txt
+                    
+                    echo "Start the process"
+                    nohup $APP_HOME/$BACKEND/venv/bin/python app.py > app.log 2>&1 &
+                    
+                    echo "Backend Started successfully"
                 """
             }
+
         }
 
+
+
     }
+
+
+
 }
