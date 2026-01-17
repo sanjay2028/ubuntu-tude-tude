@@ -19,13 +19,7 @@ pipeline {
         stage("VENV Setup"){
             steps {
                 sh """
-                    echo "Switch to working dir"
-                    cd "${APP_HOME}/${BACKEND_DIR}"                                        
-                    python3 -m venv venv
-
-                    . venv/bin/activate
-                    deactivate
-                    
+                    echo "Switch to working dir"                    
                 """
             }
         }
