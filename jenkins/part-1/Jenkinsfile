@@ -36,7 +36,7 @@ pipeline {
                     cd "${APP_HOME}/${BACKEND_DIR}"
                     echo "Copy data from workspace to backend"
                     cp -r ${WORKSPACE}/aws-assignment/backend/* .
-                    source venv/bin/activate
+                    . venv/bin/activate
                     pip3 install -r requirements.txt
                     nohup venv/bin/python3 app.py > backendapp.log 2>&1 &
                 """
