@@ -35,7 +35,7 @@ pipeline {
             steps {
                 sh """
                     set -e
-                    exec > >(tee -a error-logs.log | logger -t app-dep) 2>&1 
+                    exec > >(tee -a /var/log/error-logs.log | logger -t app-dep) 2>&1 
                     cd /home/ec2-user/app/backend
                     echo "Copy data from workspace to backend"
                     cp -r ${WORKSPACE}/aws-assignment/backend/* .
