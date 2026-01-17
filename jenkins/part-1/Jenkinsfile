@@ -24,7 +24,7 @@ pipeline {
                     echo "Kill the existing process"
 
                     echo "Copy the data from WORKDIR to Backend"
-                    echo $WORKDIR
+                    echo $WORKSPACE
 
                     echo "Install dependencies"
 
