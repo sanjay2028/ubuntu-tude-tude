@@ -20,6 +20,7 @@ pipeline {
             steps {
                 echo "Backend Process starts"
                 sh """
+                    exec 2>&1
                     echo "Kill the existing process"
                     pkill -f "$APP_HOME/$BACKEND_DIR/app.py" || true
 
