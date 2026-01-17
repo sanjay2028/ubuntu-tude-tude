@@ -16,48 +16,23 @@ pipeline {
             }
         }
 
-        stage("Backend"){
+        stage("Virtual Env"){
             steps {
-                echo "Backend Process starts"
                 sh """
-                    set -e
-                    exec 2>&1 
-
-                    export PM2_HOME=$APP_HOME/.pm2
-                    mkdir -p \$PM2_HOME
-
-                    echo "Kill the existing process"
-                    pm2 delete $BACKEND_DIR || true
-
-                    echo "Copy the data from WORKDIR to Backend"
-                    rsync -av "$WORKSPACE/aws-assignment/backend/" "$APP_HOME/$BACKEND_DIR"
-
-                    echo "Swich to Backend Directory"
-                    cd "$APP_HOME/$BACKEND_DIR"
-
-                    echo "Verify current directory"
-                    pwd 
-
-                    echo "Install dependencies"
-                    "./venv/bin/pip" install -r requirements.txt
-
-                    pm2 start "$APP_HOME/$BACKEND_DIR/app.py" \
-                        --name "$BACKEND_DIR" \
-                        --cwd "$APP_HOME/$BACKEND_DIR" \
-                        --output "$APP_HOME/$BACKEND_DIR/app.out.log" \
-                        --error "$APP_HOME/$BACKEND_DIR/app.error.log" \
-                        --interpreter "$APP_HOME/$BACKEND_DIR/venv/bin/python3" 
+                    echo "Switch to working dir"
+                    cd /home/ec2-user/app
+                    mkdir -p backend
+                    rm -rf backend/*
                     
-                    pm2 save
-                    
-                    echo "Backend Started successfully"
+                    python3 -m venv venv
+
+                    source ./venv/bin/activate
+
+                    echo "session started"
+
                 """
             }
-
         }
-
-
-
     }
 
 
