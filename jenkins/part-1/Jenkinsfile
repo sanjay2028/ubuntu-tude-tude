@@ -27,8 +27,10 @@ pipeline {
                     rsync -av "$WORKSPACE/aws-assignment/backend/" "$APP_HOME/$BACKEND_DIR"
 
                     echo "Install dependencies"
+                    "$APP_HOME/$BACKEND_DIR/venv/bin/pip" install -r requirements.txt
 
-                    echo "Start the process"                    
+                    echo "Start the process"
+                    nohup "$APP_HOME/$BACKEND_DIR/venv/bin/python" app.py > "$APP_HOME/$BACKEND_DIR/app.log" 2>&1 &                    
                     
                     echo "Backend Started successfully"
                 """
