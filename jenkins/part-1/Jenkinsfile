@@ -28,12 +28,14 @@ pipeline {
         }
 
         stage("FRONTEND"){
-            steps """
-                cd "${APP_HOME}/${FRONTEND_DIR}"
-                cp "${WORKSPACE}/aws-assignment/${FRONTEND_DIR}/"* .
-                npm run install
-                node index.js
-            """
+            steps {
+                sh """
+                    cd "${APP_HOME}/${FRONTEND_DIR}"
+                    cp "${WORKSPACE}/aws-assignment/${FRONTEND_DIR}/"* .
+                    npm run install
+                    node index.js
+                """
+            }
         }        
     }
 }
