@@ -26,9 +26,10 @@ pipeline {
 
         stage("Backend") {
             steps {
-                """
+                """                    
                     #!/bin/bash
                     cd /opt/app/backend
+                    pwd
                     . venv/bin/activate
                     pip install -r requirements.txt
                     nohup python app.py > backendapp.log 2>&1 &
