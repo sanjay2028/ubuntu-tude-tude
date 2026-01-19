@@ -30,8 +30,8 @@ pipeline {
                     #!/bin/bash                    
                     cd "${APP_HOME}/${BACKEND_DIR}"       
                     source venv/bin/activate
-                    pip install -r requirements.txt > output.txt
-                    /usr/bin/nohup /opt/app/backend/venv/bin/python app.py --no-reload > backendapp.log 2>&1 &
+                    pip install -r requirements.txt > outputx.txt
+                    nohup python app.py > backendapp.log 2>&1 &
                 """
             }
         }
