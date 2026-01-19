@@ -26,7 +26,7 @@ pipeline {
 
         stage("Backend") {
             steps {
-                """                    
+                sh """                    
                     #!/bin/bash
                     cd /opt/app/backend
                     pwd
