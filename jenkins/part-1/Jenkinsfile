@@ -30,6 +30,7 @@ pipeline {
         stage("FRONTEND"){
             steps {
                 sh """
+                    export pm2_home="${APP_HOME}/${FRONTEND_DIR}"
                     cd "${APP_HOME}/${FRONTEND_DIR}"
                     cp -r "${WORKSPACE}/aws-assignment/${FRONTEND_DIR}/"* .
                     npm install
