@@ -21,6 +21,7 @@ pipeline {
                 sh """
                     cd "${APP_HOME}/${BACKEND_DIR}"
                     cp "${WORKSPACE}/aws-assignment/backend/"* .
+                    echo "Restart the service"
                     sudo systemctl restart flaskapp                  
                 """
             }
