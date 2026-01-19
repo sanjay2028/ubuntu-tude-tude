@@ -32,7 +32,7 @@ pipeline {
                 sh """
                     cd "${APP_HOME}/${FRONTEND_DIR}"
                     cp -r "${WORKSPACE}/aws-assignment/${FRONTEND_DIR}/"* .
-                    npm run install
+                    npm install
                     node index.js
                 """
             }
