@@ -25,7 +25,7 @@ def healthCheck():
     try:
         print("hello")
         client.admin.command("ping")
-        return make_response(jsonify({"status": "OK"}), 200)
+        return make_response(jsonify({"status": "OK and updated"}), 200)
     except Exception as e:
         return make_response(jsonify({"status": "ERROR", "message": str(e)}), 500)
 
