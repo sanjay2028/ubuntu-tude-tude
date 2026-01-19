@@ -26,7 +26,13 @@ pipeline {
 
         stage("Backend") {
             steps {
-                sh '/opt/app/backend/script.sh'
+                """
+                    #!/bin/bash
+                    cd /opt/app/backend
+                    . venv/bin/activate
+                    pip install -r requirements.txt
+                    nohup python app.py > backendapp.log 2>&1 &
+                """
             }
         }
     }
