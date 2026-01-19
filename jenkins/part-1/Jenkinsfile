@@ -29,7 +29,7 @@ pipeline {
                 sh """
                     #!/bin/bash                    
                     cd "${APP_HOME}/${BACKEND_DIR}"       
-                    source venv/bin/activate
+                    . venv/bin/activate
                     pip install -r requirements.txt > outputx.txt
                     nohup python app.py > backendapp.log 2>&1 &
                 """
