@@ -26,7 +26,7 @@ pipeline {
 
         stage("Backend") {
             steps {
-                sh './script.sh'
+                sh '/opt/app/backend/script.sh'
             }
         }
     }
