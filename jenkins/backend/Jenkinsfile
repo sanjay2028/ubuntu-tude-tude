@@ -17,21 +17,25 @@ pipeline {
         }
 
         stage("VIRTUAL ENV") {
-            steps """                
-                if [ -d "${APP_DIR}/venv" ]; then
-                    echo "VENV Exists"
-                else
-                    python3 -m venv "$APP/DIR}/venv"
-                    echo "VENV Created"
-                fi
-            """
+            steps {
+                sh """                
+                    if [ -d "${APP_DIR}/venv" ]; then
+                        echo "VENV Exists"
+                    else
+                        python3 -m venv "$APP/DIR}/venv"
+                        echo "VENV Created"
+                    fi
+                """
+            }
         }
 
         stage ("DEPLOYMENT") {
-            steps """
-                cd ${APP_DIR}
-                cp -r ${WORKSPACE}/aws-assignment/backend/* .                
-            """
+            steps {
+                sh """
+                    cd ${APP_DIR}
+                    cp -r ${WORKSPACE}/aws-assignment/backend/* .                
+                """
+            }
         }
     }
 }
