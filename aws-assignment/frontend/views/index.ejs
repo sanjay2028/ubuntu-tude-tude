@@ -15,14 +15,14 @@
             <form action="/" method="POST">
                 <div class="mb-3">
                     <label for="name" class="form-label">Name:</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required value="<%= formData.name %>" />
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name:" required value="<%= formData.name %>" />
                     <% if(submission_output?.validationErrors?.name){ %> 
                         <div class="error"><%= submission_output.validationErrors.name %></div>
                     <% } %>
                 </div>
                 <div class="mb-3">
                     <label for="age" class="form-label">Age:</label>
-                    <input type="number" class="form-control" id="age" name="age" placeholder="Enter your age" required value="<%= formData.age %>" />
+                    <input type="number" class="form-control" id="age" name="age" placeholder="Enter your age:" required value="<%= formData.age %>" />
                     <% if(submission_output?.validationErrors?.age){ %> 
                         <div class="error"><%= submission_output.validationErrors.age %></div>
                     <% } %>
