@@ -35,7 +35,7 @@ pipeline {
                     cd ${APP_DIR}
                     cp -r ${WORKSPACE}/aws-assignment/backend/* .
                     "${APP_DIR}/venv/bin/pip3" install -r requirements.txt  > output.txt
-                    nohup "${APP_DIR}/venv/bin/python3" app.py > app.log 2>&1 &
+                    systemctl restart flaskapp.service
                 """
             }
         }
