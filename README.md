@@ -46,6 +46,37 @@ Ref: Tute Dude / DevOps Course / CI/CD Deployment Assignment
 ## PART 2
 
 # SETUP Jenkins Pipeline. 
+1. Jenkins has already been setup using setup.sh
+1. Create two declarative pipelines
+    - Flask-Backend
+    - Node-Frontend
+1. Jenkinsfile for each pipeline is provided in the repository
+    - Frontend Jenkinsfile
+        jenkins/frontend/Jenkinsfile
+    - Backend Jenkinsfile
+        jenkins/backend/Jenkinsfile
+1. For each pipeline, under Triggers, ensure **GitHub hook trigger for GITScm polling** is checked. 
+1. This is required for webhook to trigger the builds for our pipelines automatically
+1. Since we are uisng SSH for repository cloning, ensure you add github credentials in your Jenkins
+    Jenkins > Manage Jenkins > Credentials > Global > Add credentials
+    - Scope : Global
+    - ID: github-ssh
+    - Description: Anything of your choise
+    - Username: git
+    - Private Key (Enter Directory): Paste your private key here that we generated in **Instance Setup** step no 3. 
 
+# Github Setup.
+1. Ensure that your ssh key is deployed in your github settings to facilitate the ssh communication between your server and github. 
+1. Under webhooks, also enable the webhook using your VM's Ip address. 
+1. update the Payload URL as http://your-ip-address:8080/github-webhook
+1. Once setup, after every code push, the webhook will be triggered and the code will be deployed.
 
+## Additional setup for starting the front-end app using jenkins
+1. Switch user to root using sudo su root
+1. Switch the user to jenkins
+1. navigate to /var/app/frontend
+1. execute pm2 start index.js --name frontend
 
+Since Jenkins will be responsible to restart the app, this step will prevent you from pm2 related failures during job execution. 
+
+CICD setup is complete and you should be able to deploy your code through automated pipelines now.
