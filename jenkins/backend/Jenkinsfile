@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+    environment {
+        APP_DIR = "/var/app/backend" 
+    }
+
+    stages {
+        stage("CHECKOUT"){
+            steps {                
+                git (
+                    url: "https://github.com/sanjay2028/ubuntu-tude-tude", 
+                    branch: "jenkins"
+                    credentialsId: "github-ssh"
+                )
+                echo "Login Successful"
+            }
+        }
+
+        stage("VIRTUAL ENV") {
+            steps """                
+                if [ -d "${APP_DIR}/venv" ]; then
+                    echo "VENV Exists"
+                else
+                    python3 -m venv "$APP/DIR}/venv"
+                    echo "VENV Created"
+                fi
+            """
+        }
+
+        stage ("DEPLOYMENT") {
+            steps """
+                cd ${APP_DIR}
+                cp -r ${WORKSPACE}/aws-assignment/backend/* .                
+            """
+        }
+    }
+}
