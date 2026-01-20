@@ -22,7 +22,7 @@ pipeline {
                     if [ -d "${APP_DIR}/venv" ]; then
                         echo "VENV Exists"
                     else
-                        python3 -m venv "$APP/DIR}/venv"
+                        python3 -m venv "${APP_DIR}/venv"
                         echo "VENV Created"
                     fi
                 """
