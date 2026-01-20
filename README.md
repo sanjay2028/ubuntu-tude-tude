@@ -1,5 +1,5 @@
 # Information for Terraform Assignment Tute Dude
-This project contains the infrastructure for a microservice based architecture.
+This project contains the CI/CD Pipeline for a front end and back end app.
 
 Directory Terraform:
 Clone the repository and check for terraform directory. 
