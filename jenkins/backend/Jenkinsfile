@@ -9,7 +9,7 @@ pipeline {
             steps {                
                 git (
                     url: "git@github.com:sanjay2028/ubuntu-tude-tude.git", 
-                    branch: "jenkins"
+                    branch: "jenkins",
                     credentialsId: "github-ssh"
                 )
                 echo "Login Successful"
