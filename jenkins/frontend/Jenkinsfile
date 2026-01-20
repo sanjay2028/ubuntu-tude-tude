@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+    
+    environment {
+        APP_DIR = "/var/app/frontend" 
+    }
+
+    stages{
+        stage("CHECKOUT"){
+            steps{
+                git(
+                    url: "git@github.com:sanjay2028/ubuntu-tude-tude.git",
+                    branch: "jenkins",
+                    credentialsId: "github-ssh"
+                )
+            }
+        }
+
+        stage("DEPLOYMENT"){
+            steps{
+                sh """
+                    cd ${APP_DIR}
+                    cp -r "${WORKSPACE}/aws-assignment/frontend/"* . 
+                    npm install
+                """
+            }
+        }
+
+        stage("RESTART"){
+            steps{
+                sh """
+                    cd ${APP_DIR}
+                    pm2 restart frontend
+                """
+            }
+        }
+    }
+
+}
