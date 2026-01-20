@@ -33,7 +33,8 @@ pipeline {
             steps {
                 sh """
                     cd ${APP_DIR}
-                    cp -r ${WORKSPACE}/aws-assignment/backend/* .                
+                    cp -r ${WORKSPACE}/aws-assignment/backend/* .
+                    "${APP_DIR}/backend/venv/bin/pip" install -r requirements.txt  > output.txt          
                 """
             }
         }
